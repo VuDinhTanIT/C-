@@ -127,7 +127,15 @@ public:
     TeamLeader(double amonthlyBonus, double arequiredTraining,
                double acompletedTraning)
     {
-        amonthlyBonus = amonthlyBonus;
+        monthlyBonus = amonthlyBonus;
+        requiredTraining = arequiredTraining;
+        completedTraining = acompletedTraning;
+    }
+    TeamLeader(string aName, int aNumber, string aDate,
+               int aShift, double aPayRate, double amonthlyBonus, double arequiredTraining,
+               double acompletedTraning) : ProductionWorker(aName, aNumber, aDate, aShift, aPayRate)
+    {
+        monthlyBonus = amonthlyBonus;
         requiredTraining = arequiredTraining;
         completedTraining = acompletedTraning;
     }
@@ -159,14 +167,14 @@ public:
 
 int main()
 {
-    ProductionWorker Tan("Tan", 27, "1/05/2023", 1, 00.00);
-    displayInfo(Tan);
+   ProductionWorker Tai("Tai", 27, "1/05/2023", 1, 00.00);
+    displayInfo(Tai);
 
-    TeamLeader tl(500, 40, 35);
-    tl.setEmployeeName("Jane Doe");
-    tl.setEmployeeNumber(5678);
-    tl.setEmployeeHireDate("01/01/2021");
-    tl.setShift(2);
+    TeamLeader tl("Tan", 27, "1/06/2023", 1, 10.00,500, 40, 35);
+    // tl.setEmployeeName("Jane Doe");
+    // tl.setEmployeeNumber(5678);
+    // tl.setEmployeeHireDate("01/01/2021");
+    // tl.setShift(2);
     // tl.setHireDate(15.0);
 
     cout << "Name: " << tl.getNameEmployee() << endl;

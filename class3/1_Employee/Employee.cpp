@@ -5,178 +5,102 @@ using namespace std;
 class Employee
 {
 private:
-    string name;
+    std::string name;
     int number;
-    string hireDate;
+    std::string hire_date;
 
 public:
-    Employee()
+    Employee(std::string name, int number, std::string hire_date)
     {
-        name = "";
-        number = 0;
-        hireDate = "";
+        this->name = name;
+        this->number = number;
+        this->hire_date = hire_date;
     }
-    Employee(string aName, int aNumber, string aDate)
-    {
-        name = aName;
-        number = aNumber;
-        hireDate = aDate;
-    }
-    void setEmployeeName(string n)
-    {
-        name = n;
-    }
-    void setEmployeeNumber(int num)
-    {
-        number = num;
-    }
-    void setEmployeeHireDate(string date)
-    {
-        hireDate = date;
-    }
-    string getNameEmployee() const
+
+    std::string get_name()
     {
         return name;
     }
-    int getEmployeeNumber() const
+
+    void set_name(std::string name)
+    {
+        this->name = name;
+    }
+
+    int get_number()
     {
         return number;
     }
-    string getEmployeeHireDate() const
+
+    void set_number(int number)
     {
-        return hireDate;
+        this->number = number;
+    }
+
+    std::string get_hire_date()
+    {
+        return hire_date;
+    }
+
+    void set_hire_date(std::string hire_date)
+    {
+        this->hire_date = hire_date;
     }
 };
+
 class ProductionWorker : public Employee
 {
 private:
     int shift;
-    double payRate;
+    double hourly_pay_rate;
 
 public:
-    ProductionWorker() : Employee()
+    ProductionWorker(std::string name, int number, std::string hire_date, int shift, double hourly_pay_rate) : Employee(name, number, hire_date)
     {
-        shift = 0;
-        payRate = 0.0;
+        this->shift = shift;
+        this->hourly_pay_rate = hourly_pay_rate;
     }
-    ProductionWorker(string aName, int aNumber, string aDate,
-                     int aShift, double aPayRate) : Employee(aName, aNumber, aDate)
-    {
-        shift = aShift;
-        payRate = aPayRate;
-    }
-    void setShift(int s)
-    {
-        shift = s;
-    }
-    void setPayRate(double r)
-    {
-        payRate = r;
-    }
-    int getShiftNumber() const
+
+    int get_shift()
     {
         return shift;
     }
-    string getShiftName() const
+
+    void set_shift(int shift)
     {
-        if (shift == 1)
-            return "Day";
-        else if (shift == 2)
-            return "Night";
-        else
-            return "Invalid";
+        this->shift = shift;
     }
-    double getPayRate() const
+
+    double get_hourly_pay_rate()
     {
-        return payRate;
+        return hourly_pay_rate;
     }
+
+    void set_hourly_pay_rate(double hourly_pay_rate)
+    {
+        this->hourly_pay_rate = hourly_pay_rate;
+    }
+  
 };
-void displayInfo(ProductionWorker e)
-{
-    cout << setprecision(2) << fixed << showpoint;
-    cout << "Name: "
-         << e.getNameEmployee() << endl;
-    cout << "Employee number: "
-         << e.getEmployeeNumber() << endl;
-    cout << "Hire date: "
-         << e.getEmployeeHireDate() << endl;
-    cout << "Shift: "
-         << e.getShiftName() << endl;
-    cout << "Shift number: "
-         << e.getShiftNumber() << endl;
-    cout << "Pay rate: "
-         << e.getPayRate() << endl;
-    system("pause");
-}
-
-class TeamLeader : public ProductionWorker
-{
-private:
-    double monthlyBonus;
-    double requiredTraining;
-    double completedTraining;
-
-public:
-    ProductionWorker e;
-    TeamLeader() : ProductionWorker()
+  void displayInfo(ProductionWorker e)
     {
-        monthlyBonus = 0;
-        requiredTraining = 0;
-        completedTraining = 0;
+        cout << setprecision(2) << fixed << showpoint;
+        cout << "Name: "
+             << e.get_name() << endl;
+        cout << "Employee number: "
+             << e.get_number() << endl;
+        cout << "Hire date: "
+             << e.get_hire_date() << endl;
+        cout << "Shift: "
+             << e.get_shift() << endl;
+        cout << "Pay rate: "
+             << e.get_hourly_pay_rate() << endl;
+        system("pause");
     }
-    TeamLeader(double amonthlyBonus, double arequiredTraining,
-               double acompletedTraning)
-    {
-        amonthlyBonus = amonthlyBonus;
-        requiredTraining = arequiredTraining;
-        completedTraining = acompletedTraning;
-    }
-    void setMonthlyBonus(double d)
-    {
-        monthlyBonus = d;
-    }
-    void setRequiredTraining(double e)
-    {
-        requiredTraining = e;
-    }
-    void setCompletedTraining(double f)
-    {
-        completedTraining = f;
-    }
-    int getMonthlyBonus() const
-    {
-        return monthlyBonus;
-    }
-    int getRequiredTraining() const
-    {
-        return requiredTraining;
-    }
-    double getCompletedTraining() const
-    {
-        return completedTraining;
-    }
-};
-
 int main()
 {
-    ProductionWorker Tan("Tan", 27, "1/05/2023", 1, 00.00);
-    displayInfo(Tan);
-
-    TeamLeader tl(500, 40, 35);
-    tl.setEmployeeName("Jane Doe");
-    tl.setEmployeeNumber(5678);
-    tl.setEmployeeHireDate("01/01/2021");
-    tl.setShift(2);
-    // tl.setHireDate(15.0);
-
-    cout << "Name: " << tl.getNameEmployee() << endl;
-    cout << "Employee Number: " << tl.getEmployeeNumber() << endl;
-    cout << "Hire Date: " << tl.getEmployeeHireDate() << endl;
-    cout << "Shift: " << tl.getShiftName() << endl;
-    cout << "Hourly Pay Rate: " << tl.getPayRate() << endl;
-    cout << "Monthly Bonus: " << tl.getMonthlyBonus() << endl;
-    cout << "Required Training Hours: " << tl.getRequiredTraining() << endl;
-    cout << "Attended Training Hours: " << tl.getCompletedTraining() << endl;
+    ProductionWorker Tai("Tai", 27, "1/05/2023", 1, 00.00);
+    displayInfo(Tai);
 
     return 0;
 }
